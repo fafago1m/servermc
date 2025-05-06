@@ -1,0 +1,505 @@
+<html lang="ru">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   BergPlay
+  </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+    font-family: "Montserrat", sans-serif;
+   }
+  </style>
+ </head>
+ <body class="bg-[#0a0a0a] text-white">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <header class="sticky top-0 z-50 backdrop-blur-lg bg-gray-900/80 shadow-md">
+      <div class="container mx-auto max-w-7xl px-4">
+        <div class="flex h-16 items-center justify-between">
+    
+          <!-- Logo -->
+          <a href="#" class="flex items-center gap-2">
+            <img class="h-8 w-8" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Logo">
+            <span class="text-white font-semibold text-lg hidden sm:block">FafaStore</span>
+          </a>
+    
+          <!-- Desktop Nav -->
+          <nav class="hidden sm:flex items-center space-x-6">
+            <a href="#" class="text-white font-medium hover:text-yellow-400 transition">Beranda</a>
+            <a href="#" class="text-gray-300 font-medium hover:text-yellow-400 transition">Donasi</a>
+            <a href="#" class="text-gray-300 font-medium hover:text-yellow-400 transition">Peraturan</a>
+            <a href="#" class="text-gray-300 font-medium hover:text-yellow-400 transition">Rank</a>
+            <a href="#" class="text-gray-300 font-medium hover:text-yellow-400 transition">Kontak</a>
+          </nav>
+    
+          <!-- Icons & Play Button -->
+          <div class="flex items-center gap-4">
+            <a href="#" class="text-xl text-[#7289da] hover:scale-110 transition"><i class="fab fa-discord"></i></a>
+            <a href="#" class="text-xl text-[#25D366] hover:scale-110 transition"><i class="fab fa-whatsapp"></i></a>
+            <button class="hidden sm:inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-full px-5 py-2 transition duration-300">
+              Play
+            </button>
+    
+            <!-- Mobile Menu Button -->
+            <button id="menuToggle" class="sm:hidden text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Mobile Menu (ABSOLUTE to prevent shifting content) -->
+      <div id="mobileMenu" class="hidden sm:hidden absolute top-full left-0 right-0 px-4 pt-3 pb-4 bg-gray-800/90 backdrop-blur-md rounded-b-md shadow-md">
+        <a href="#" class="block text-white font-medium px-3 py-2 rounded hover:bg-gray-700">Beranda</a>
+        <a href="#" class="block text-gray-300 font-medium px-3 py-2 rounded hover:bg-gray-700">Donasi</a>
+        <a href="#" class="block text-gray-300 font-medium px-3 py-2 rounded hover:bg-gray-700">Peraturan</a>
+        <a href="#" class="block text-gray-300 font-medium px-3 py-2 rounded hover:bg-gray-700">Rank</a>
+        <a href="#" class="block text-gray-300 font-medium px-3 py-2 rounded hover:bg-gray-700">Kontak</a>
+        <button class="mt-3 w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-full py-2 transition">
+          Play
+        </button>
+      </div>
+    </header>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+    
+        menuToggle.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      });
+    </script>
+    
+    <main class="md-20 px-4">
+      <div class="container mx-auto max-w-7xl flex flex-col-reverse md:flex-row items-center justify-between gap-8 py-4">
+
+        <!-- Left Content -->
+        <div class="max-w-xl w-full">
+          <div class="inline-flex items-center gap-2 bg-yellow-900/40 text-[#ffb800] text-xs font-semibold rounded px-3 py-1 mb-4 shadow-sm">
+            <i class="fas fa-info-circle"></i>
+            <span>IP : play.fafastore.com</span>
+          </div>
+          <h1 class="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-4">
+            Temukan Dunia Tanpa Batas
+          </h1>
+          <p class="text-gray-400 text-sm mb-6">
+            Bergabunglah dengan komunitas global kami, ikuti pertempuran, jadi pemimpin, dan tukar pengalaman dengan pemain lainnya.
+          </p>
+          <div class="flex flex-wrap items-center gap-4">
+            <button class="flex items-center gap-2 bg-[#f2a30f] hover:bg-[#d18a0b] text-black font-semibold px-6 py-2 rounded-md transition duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6V4z"/></svg>
+              Mulai Bermain
+            </button>
+            <div class="flex items-center gap-2 text-[#00c800] font-medium text-sm px-4 py-1.5 rounded-full">
+              <div class="relative flex items-center">
+                <span class="absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75 animate-ping"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </div>
+              <span class="tracking-wide">8 Online</span>
+            </div>
+          </div>
+        </div>
+    
+        <div class="relative w-full max-w-xs md:max-w-sm md-6 md:mt-0 mx-auto">
+          <img src="./img/render.png" alt="Karakter 3D" class="w-2/3 sm:w-full mx-auto rounded-lg shadow-lg object-cover" />
+        </div>
+        
+      </div>
+    </main>
+    
+    <script>
+      document.getElementById('menuToggle').addEventListener('click', () => {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+      });
+    </script>
+    
+    
+
+    
+    <section class="py-16 px-8 bg-[#121212]">
+      <h2 class="text-white text-lg md:text-xl font-bold mb-6 text-center">Galeri Poster Minecraft</h2>
+    
+      <div class="relative max-w-5xl mx-auto overflow-x-hidden">
+        <!-- Tombol Kiri -->
+        <button onclick="scrollLeft()" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 text-white p-2 rounded-full hover:bg-white/20 transition">
+          <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+    
+        <!-- Slider -->
+        <div id="slider" class="flex gap-2 items-end justify-center overflow-x-auto scroll-smooth px-6 py-2">
+          <!-- Poster 1 -->
+
+          <div class="w-[80px] h-[140px] md:w-[100px] md:h-[170px] rounded-md overflow-hidden bg-[#1a1a1a] shadow transform translate-y-2 text-center">
+            <img src="https://togethercraft.online/wp-content/uploads/2022/01/2022-01-12_19.43.37.png" alt="Minecraft World Poster" class="w-full h-full object-cover" />
+            <p class="text-white text-[10px] md:text-xs mt-1">World</p>
+          </div>
+          <div class="w-[80px] h-[140px] md:w-[100px] md:h-[170px] rounded-md overflow-hidden bg-[#1a1a1a] shadow transform -translate-y-1 text-center">
+            <img src="https://togethercraft.online/wp-content/uploads/2022/01/2022-01-12_19.43.37.png" alt="Minecraft Legends Poster" class="w-full h-full object-cover" />
+            <p class="text-white text-[10px] md:text-xs mt-1">Legends</p>
+          </div>
+          <!-- Poster 2 -->
+          <div class="w-[80px] h-[140px] md:w-[100px] md:h-[170px] rounded-md overflow-hidden bg-[#1a1a1a] shadow transform translate-y-2 text-center">
+            <img src="https://togethercraft.online/wp-content/uploads/2022/01/2022-01-12_19.43.37.png" alt="Minecraft World Poster" class="w-full h-full object-cover" />
+            <p class="text-white text-[10px] md:text-xs mt-1">World</p>
+          </div>
+          <!-- Poster 3 -->
+          <div class="w-[80px] h-[140px] md:w-[100px] md:h-[170px] rounded-md overflow-hidden bg-[#1a1a1a] shadow transform -translate-y-1 text-center">
+            <img src="https://m.media-amazon.com/images/I/81+v5K7vJ0L._AC_SL1500_.jpg" alt="Minecraft Legends Poster" class="w-full h-full object-cover" />
+            <p class="text-white text-[10px] md:text-xs mt-1">Legends</p>
+          </div>
+
+          <div class="w-[80px] h-[140px] md:w-[100px] md:h-[170px] rounded-md overflow-hidden bg-[#1a1a1a] shadow transform translate-y-2 text-center">
+            <img src="https://m.media-amazon.com/images/I/81z6a7QfGqL._AC_SL1500_.jpg" alt="Minecraft World Poster" class="w-full h-full object-cover" />
+            <p class="text-white text-[10px] md:text-xs mt-1">World</p>
+          </div>
+        </div>
+    
+        <!-- Tombol Kanan -->
+        <button onclick="scrollRight()" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 text-white p-2 rounded-full hover:bg-white/20 transition">
+          <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </section>
+    
+    
+      
+    
+    <section class="bg-[#1a1a1a] rounded-lg mt-8 p-6 max-w-full overflow-x-auto">
+     <h3 class="text-white font-semibold text-lg mb-2 select-none">
+      Категории товаров
+     </h3>
+     <p class="text-gray-400 text-xs mb-4 max-w-3xl select-none">
+      После покупки выдача услуг происходит моментально на ваш игровой аккаунт
+     </p>
+     <nav class="flex gap-6 text-xs font-semibold select-none text-gray-400 flex-wrap">
+      <button aria-current="true" class="flex items-center gap-1 text-[#ffb800] cursor-default" type="button">
+       <img alt="Privileges icon yellow pixel" class="w-4 h-4" height="16" src="https://storage.googleapis.com/a1aa/image/2c282415-938e-4ac3-e9ef-290e23f01d1a.jpg" width="16"/>
+       Привилегии
+      </button>
+      <button aria-current="true" class="flex items-center gap-1 border-b-2 border-[#f2a30f] text-[#f2a30f] cursor-default" type="button">
+       <img alt="Cases icon orange pixel" class="w-4 h-4" height="16" src="https://storage.googleapis.com/a1aa/image/29ef26f2-0ffc-40fa-a0db-c8d5d9772270.jpg" width="16"/>
+       Кейсы
+      </button>
+      <button class="flex items-center gap-1" type="button">
+       <img alt="Money icon green pixel" class="w-4 h-4" height="16" src="https://storage.googleapis.com/a1aa/image/09909046-90f9-4ff7-8549-faa6e0bb0f5a.jpg" width="16"/>
+       Деньги
+      </button>
+      <button class="flex items-center gap-1" type="button">
+       <img alt="Misc icon gray pixel" class="w-4 h-4" height="16" src="https://storage.googleapis.com/a1aa/image/46f5ebc5-f3aa-4de4-fb63-37467543b6ff.jpg" width="16"/>
+       Разное
+      </button>
+     </nav>
+    </section>
+    <section class="mt-8 max-w-full overflow-x-auto">
+     <h3 class="text-white font-semibold text-lg mb-4 select-none">
+      Выберите сервер
+     </h3>
+     <nav class="flex gap-2 text-xs font-semibold text-gray-400 mb-6 select-none flex-wrap">
+      <button aria-current="true" class="bg-[#1a1a1a] border border-[#3a3a3a] rounded px-3 py-1 text-white cursor-default" type="button">
+       Выживание
+      </button>
+      <button class="bg-[#1a1a1a] border border-[#3a3a3a] rounded px-3 py-1 hover:border-[#f2a30f] hover:text-[#f2a30f]" type="button">
+       Креатив
+      </button>
+      <button class="bg-[#1a1a1a] border border-[#3a3a3a] rounded px-3 py-1 hover:border-[#f2a30f] hover:text-[#f2a30f]" type="button">
+       Загадочное убийство
+      </button>
+     </nav>
+     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="bg-[#1a1a1a] rounded-lg p-4 flex flex-col items-center gap-3 select-none">
+       <img alt="Pixel chest icon with lock and wood texture" class="w-20 h-20" height="80" src="https://storage.googleapis.com/a1aa/image/528651fb-a05c-4353-dcba-d000b60e8b61.jpg" width="80"/>
+       <div class="text-xs text-gray-400 text-center">
+        <p>
+         Кейс с донатом
+         <span class="font-semibold">
+          x5
+         </span>
+        </p>
+        <p class="mt-1 font-semibold text-white">
+         160 ₽
+        </p>
+       </div>
+       <button class="bg-[#f2a30f] text-black text-xs font-semibold rounded px-4 py-1 w-full flex items-center justify-center gap-2 hover:bg-[#d18a0b]" type="button">
+        <i class="fas fa-shopping-cart"></i>
+        Приобрести
+       </button>
+      </div>
+      <div class="bg-[#2a2a2a] rounded-lg p-4 flex flex-col items-center gap-3 select-none relative">
+       <div class="absolute top-2 right-2 bg-[#00c800] text-[9px] font-semibold rounded px-2 py-[2px] select-none">
+        -10%
+       </div>
+       <img alt="Pixel chest icon with lock and wood texture" class="w-20 h-20" height="80" src="https://storage.googleapis.com/a1aa/image/528651fb-a05c-4353-dcba-d000b60e8b61.jpg" width="80"/>
+       <div class="text-xs text-gray-400 text-center">
+        <p>
+         Кейс с донатом
+         <span class="font-semibold">
+          x10
+         </span>
+        </p>
+        <p class="mt-1 font-semibold text-[#00c800]">
+         300 ₽
+         <span class="line-through text-gray-500 ml-1">
+          450 ₽
+         </span>
+        </p>
+       </div>
+       <button class="bg-[#f2a30f] text-black text-xs font-semibold rounded px-4 py-1 w-full flex items-center justify-center gap-2 hover:bg-[#d18a0b]" type="button">
+        <i class="fas fa-shopping-cart"></i>
+        Приобрести
+       </button>
+      </div>
+      <div class="bg-[#1a1a1a] rounded-lg p-4 flex flex-col items-center gap-3 select-none">
+       <img alt="Pixel chest icon with lock and wood texture" class="w-20 h-20" height="80" src="https://storage.googleapis.com/a1aa/image/528651fb-a05c-4353-dcba-d000b60e8b61.jpg" width="80"/>
+       <div class="text-xs text-gray-400 text-center">
+        <p>
+         Кейс с донатом
+         <span class="font-semibold">
+          x30
+         </span>
+        </p>
+        <p class="mt-1 font-semibold text-white">
+         700 ₽
+        </p>
+       </div>
+       <button class="bg-[#f2a30f] text-black text-xs font-semibold rounded px-4 py-1 w-full flex items-center justify-center gap-2 hover:bg-[#d18a0b]" type="button">
+        <i class="fas fa-shopping-cart"></i>
+        Приобрести
+       </button>
+      </div>
+      <div class="bg-[#1a1a1a] rounded-lg p-4 flex flex-col items-center gap-3 select-none">
+       <img alt="Pixel chest icon with lock and wood texture" class="w-20 h-20" height="80" src="https://storage.googleapis.com/a1aa/image/528651fb-a05c-4353-dcba-d000b60e8b61.jpg" width="80"/>
+       <div class="text-xs text-gray-400 text-center">
+        <p>
+         Ежедневный кейс
+         <span class="font-semibold">
+          x5
+         </span>
+        </p>
+        <p class="mt-1 font-semibold text-white">
+         20 ₽
+        </p>
+       </div>
+       <button class="bg-[#f2a30f] text-black text-xs font-semibold rounded px-4 py-1 w-full flex items-center justify-center gap-2 hover:bg-[#d18a0b]" type="button">
+        <i class="fas fa-shopping-cart"></i>
+        Приобрести
+       </button>
+      </div>
+      <div class="bg-[#1a1a1a] rounded-lg p-4 flex flex-col items-center gap-3 select-none">
+       <img alt="Pixel chest icon with lock and wood texture" class="w-20 h-20" height="80" src="https://storage.googleapis.com/a1aa/image/528651fb-a05c-4353-dcba-d000b60e8b61.jpg" width="80"/>
+       <div class="text-xs text-gray-400 text-center">
+        <p>
+         Ежедневный кейс
+         <span class="font-semibold">
+          x10
+         </span>
+        </p>
+        <p class="mt-1 font-semibold text-white">
+         35 ₽
+        </p>
+       </div>
+       <button class="bg-[#f2a30f] text-black text-xs font-semibold rounded px-4 py-1 w-full flex items-center justify-center gap-2 hover:bg-[#d18a0b]" type="button">
+        <i class="fas fa-shopping-cart"></i>
+        Приобрести
+       </button>
+      </div>
+      <div class="bg-[#1a1a1a] rounded-lg p-4 flex flex-col items-center gap-3 select-none">
+       <img alt="Pixel money icon green" class="w-20 h-20" height="80" src="https://storage.googleapis.com/a1aa/image/24d243ac-18a7-46db-bf90-97a4664dd748.jpg" width="80"/>
+       <div class="text-xs text-gray-400 text-center">
+        <p>
+         Кейс о деньгах
+         <span class="font-semibold">
+          x5
+         </span>
+        </p>
+        <p class="mt-1 font-semibold text-white">
+         65 ₽
+        </p>
+       </div>
+       <button class="bg-[#f2a30f] text-black text-xs font-semibold rounded px-4 py-1 w-full flex items-center justify-center gap-2 hover:bg-[#d18a0b]" type="button">
+        <i class="fas fa-shopping-cart"></i>
+        Приобрести
+       </button>
+      </div>
+      <div class="bg-[#1a1a1a] rounded-lg p-4 flex flex-col items-center gap-3 select-none">
+       <img alt="Pixel money icon green" class="w-20 h-20" height="80" src="https://storage.googleapis.com/a1aa/image/24d243ac-18a7-46db-bf90-97a4664dd748.jpg" width="80"/>
+       <div class="text-xs text-gray-400 text-center">
+        <p>
+         Кейс о деньгах
+         <span class="font-semibold">
+          x10
+         </span>
+        </p>
+        <p class="mt-1 font-semibold text-white">
+         120 ₽
+        </p>
+       </div>
+       <button class="bg-[#f2a30f] text-black text-xs font-semibold rounded px-4 py-1 w-full flex items-center justify-center gap-2 hover:bg-[#d18a0b]" type="button">
+        <i class="fas fa-shopping-cart"></i>
+        Приобрести
+       </button>
+      </div>
+      <div class="bg-[#1a1a1a] rounded-lg p-4 flex flex-col items-center gap-3 select-none">
+       <img alt="Pixel money icon green" class="w-20 h-20" height="80" src="https://storage.googleapis.com/a1aa/image/24d243ac-18a7-46db-bf90-97a4664dd748.jpg" width="80"/>
+       <div class="text-xs text-gray-400 text-center">
+        <p>
+         Кейс о деньгах
+         <span class="font-semibold">
+          x30
+         </span>
+        </p>
+        <p class="mt-1 font-semibold text-white">
+         290 ₽
+        </p>
+       </div>
+       <button class="bg-[#f2a30f] text-black text-xs font-semibold rounded px-4 py-1 w-full flex items-center justify-center gap-2 hover:bg-[#d18a0b]" type="button">
+        <i class="fas fa-shopping-cart"></i>
+        Приобрести
+       </button>
+      </div>
+     </div>
+    </section>
+    <section class="bg-[#1a1a1a] rounded-lg mt-10 p-6 max-w-full overflow-x-auto">
+     <div class="flex flex-col sm:flex-row justify-between items-center mb-4 select-none gap-4 sm:gap-0">
+      <h4 class="text-white font-semibold text-lg flex items-center gap-2">
+       <span class="w-3 h-3 rounded-full bg-[#00c800] inline-block"></span>
+       Последние покупки
+      </h4>
+      <span class="text-gray-500 text-xs font-semibold whitespace-nowrap">
+       Всего покупок:
+       <span class="text-white">
+        4954
+       </span>
+      </span>
+     </div>
+     <div class="flex gap-6 overflow-x-auto pb-2">
+      <div class="flex flex-col items-center text-center text-xs text-gray-400 min-w-[70px] select-none">
+       <span class="mb-1">
+        15 сек. назад
+       </span>
+       <img alt="Pixel yellow head avatar" class="w-12 h-12 rounded" height="48" src="https://storage.googleapis.com/a1aa/image/1654f79f-5dad-4e16-bb83-ecca0b7ec0c9.jpg" width="48"/>
+       <span class="mt-1 font-semibold text-white break-words">
+        rrrrrjjjj
+       </span>
+       <span>
+        О-Ультра
+       </span>
+      </div>
+      <div class="flex flex-col items-center text-center text-xs text-gray-400 min-w-[70px] select-none">
+       <span class="mb-1">
+        1 мин. назад
+       </span>
+       <img alt="Pixel gray head avatar" class="w-12 h-12 rounded" height="48" src="https://storage.googleapis.com/a1aa/image/d8f51841-3712-4ae9-9ec8-aa8d2c98c822.jpg" width="48"/>
+       <span class="mt-1 font-semibold text-white break-words">
+        TheFaks
+       </span>
+       <span>
+        Герой
+       </span>
+      </div>
+      <div class="flex flex-col items-center text-center text-xs text-gray-400 min-w-[70px] select-none">
+       <span class="mb-1">
+        2 мин. назад
+       </span>
+       <img alt="Pixel brown head avatar" class="w-12 h-12 rounded" height="48" src="https://storage.googleapis.com/a1aa/image/b1b36e78-6808-4ec0-d322-e9fd12a5285c.jpg" width="48"/>
+       <span class="mt-1 font-semibold text-white break-words">
+        marat15
+       </span>
+       <span>
+        Кейс с донатом x1
+       </span>
+      </div>
+      <div class="flex flex-col items-center text-center text-xs text-gray-400 min-w-[70px] select-none">
+       <span class="mb-1">
+        6 мин. назад
+       </span>
+       <img alt="Pixel light head avatar" class="w-12 h-12 rounded" height="48" src="https://storage.googleapis.com/a1aa/image/f5db97a3-a53e-4398-00be-9dabd4a6834d.jpg" width="48"/>
+       <span class="mt-1 font-semibold text-white break-words">
+        AFK_BOTS_1
+       </span>
+       <span>
+        Бог
+       </span>
+      </div>
+      <div class="flex flex-col items-center text-center text-xs text-gray-400 min-w-[70px] select-none">
+       <span class="mb-1">
+        Вчера в 20:57
+       </span>
+       <img alt="Pixel black head avatar" class="w-12 h-12 rounded" height="48" src="https://storage.googleapis.com/a1aa/image/44d7dc54-706b-4492-b8c5-21b31256cc52.jpg" width="48"/>
+       <span class="mt-1 font-semibold text-white break-words">
+        pivasik25565
+       </span>
+       <span>
+        Легенда
+       </span>
+      </div>
+      <div class="flex flex-col items-center text-center text-xs text-gray-400 min-w-[70px] select-none">
+       <span class="mb-1">
+        Вчера в 14:14
+       </span>
+       <img alt="Pixel white head avatar" class="w-12 h-12 rounded" height="48" src="https://storage.googleapis.com/a1aa/image/f8378727-1103-4fe4-0810-4632eda3decb.jpg" width="48"/>
+       <span class="mt-1 font-semibold text-white break-words">
+        Guelko
+       </span>
+       <span>
+        Деньги 50 000$
+       </span>
+      </div>
+     </div>
+    </section>
+   </main>
+   <footer class="mt-12 text-[9px] text-gray-500 select-none max-w-full overflow-x-auto">
+    <div class="flex flex-wrap justify-center md:justify-between gap-2 md:gap-0 mb-2 font-semibold">
+     <a class="hover:text-[#ffb800]" href="#">
+      ПОЛЬЗОВАТЕЛЬСКИЕ СОГЛАШЕНИЯ
+     </a>
+     <a class="text-[#ffb800] font-semibold" href="#">
+      ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ
+     </a>
+     <a class="hover:text-[#ffb800]" href="#">
+      ПОЛИТИКА ВОЗВРАТА ПЛАТЕЖЕЙ
+     </a>
+    </div>
+    <div class="flex flex-wrap justify-between gap-4 md:gap-0 text-[8px] text-gray-400">
+     <p class="max-w-[60%] md:max-w-[70%]">
+      BergPlay - это Игровой сервер Майнкрафт с элементами мистики. Много уникальных плагинов, есть возможность получить бесплатно донат за задания и многое другое...
+      <br/><br/>
+      © 2023 BergPlay. Не связан с Mojang AB. Коммерческая деятельность проектасоответствует политике Mojang AB.
+     </p>
+     <div class="flex flex-col items-center gap-2 text-[8px] text-gray-400">
+      <div class="flex gap-2">
+       <a class="bg-[#2f2f2f] hover:bg-[#3a3a3a] rounded px-2 py-1" href="#">
+        <img alt="Discord icon blue" class="w-5 h-5" height="20" src="https://storage.googleapis.com/a1aa/image/b2e2b557-3a99-49ce-521c-0493b8344139.jpg" width="20"/>
+       </a>
+       <a class="bg-[#2f2f2f] hover:bg-[#3a3a3a] rounded px-2 py-1" href="#">
+        <img alt="VK icon blue" class="w-5 h-5" height="20" src="https://storage.googleapis.com/a1aa/image/962c0304-2335-4bb3-bd2b-4d48db08c330.jpg" width="20"/>
+       </a>
+      </div>
+      <p class="text-center leading-tight">
+       ИП Иванова И. И.
+       <br/>
+       ИНН000000000000
+       <br/>
+       ОГРНИП 2221525000029157
+      </p>
+      <button aria-label="Scroll to top" class="text-gray-400 hover:text-[#ffb800] text-xs font-semibold flex items-center gap-1" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" type="button">
+       ПОДНЯТЬСЯ ВВЕРХ
+       <i class="fas fa-angle-up"></i>
+      </button>
+     </div>
+    </div>
+   </footer>
+  </div>
+ </body>
+</html>
