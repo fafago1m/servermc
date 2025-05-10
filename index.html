@@ -77,43 +77,62 @@
       });
     </script>
     
-    <main class="md-20 px-4">
-      <section class="min-h-screen snap-start flex items-center justify-center px-4 bg-black text-white">
-      <div class="container mx-auto max-w-7xl flex flex-col-reverse md:flex-row items-center justify-between gap-8 py-4">
-
-        <!-- Left Content -->
-        <div class="max-w-xl w-full">
-          <div class="inline-flex items-center gap-2 bg-yellow-900/40 text-[#ffb800] text-xs font-semibold rounded px-3 py-1 mb-4 shadow-sm">
-            <i class="fas fa-info-circle"></i>
-            <span>IP : play.fafastore.com</span>
-          </div>
-          <h1 class="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-4">
-            Temukan Dunia Tanpa Batas
-          </h1>
-          <p class="text-gray-400 text-sm mb-6">
-            Bergabunglah dengan komunitas global kami, ikuti pertempuran, jadi pemimpin, dan tukar pengalaman dengan pemain lainnya.
-          </p>
-          <div class="flex flex-wrap items-center gap-4">
-            <button class="flex items-center gap-2 bg-[#f2a30f] hover:bg-[#d18a0b] text-black font-semibold px-6 py-2 rounded-md transition duration-200">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6V4z"/></svg>
-              Mulai Bermain
-            </button>
-            <div class="flex items-center gap-2 text-[#00c800] font-medium text-sm px-4 py-1.5 rounded-full">
-              <div class="relative flex items-center">
-                <span class="absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75 animate-ping"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+    <main class="px-4">
+      <section class="min-h-screen snap-start flex items-center justify-center text-white">
+        <div class="container mx-auto max-w-7xl flex flex-col-reverse md:flex-row items-center justify-between gap-8 py-8 md:py-20">
+          
+          <!-- Left Content -->
+          <div class="max-w-xl w-full">
+            <div class="inline-flex items-center gap-2 bg-yellow-900/40 text-[#ffb800] text-xs font-semibold rounded px-3 py-1 mb-4 shadow-sm">
+              <i class="fas fa-info-circle"></i>
+              <span>IP : play.fafastore.com</span>
+            </div>
+            <h1 class="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-4">
+              Temukan Dunia Tanpa Batas
+            </h1>
+            <p class="text-gray-400 text-sm mb-6">
+              Bergabunglah dengan komunitas global kami, ikuti pertempuran, jadi pemimpin, dan tukar pengalaman dengan pemain lainnya.
+            </p>
+            <div class="flex flex-wrap items-center gap-4">
+              <button class="flex items-center gap-2 bg-[#f2a30f] hover:bg-[#d18a0b] text-black font-semibold px-6 py-2 rounded-md transition duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6V4z"/></svg>
+                Mulai Bermain
+              </button>
+              <div class="flex items-center gap-2 text-[#00c800] font-medium text-sm px-4 py-1.5 rounded-full">
+                <div class="relative flex items-center">
+                  <span class="absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75 animate-ping"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </div>
+                <span class="tracking-wide">8 Online</span>
               </div>
-              <span class="tracking-wide">8 Online</span>
             </div>
           </div>
-        </div>
     
-        <div class="relative w-full max-w-xs md:max-w-sm md-6 md:mt-0 mx-auto">
-          <img src="./img/render.png" alt="Karakter 3D" class="w-2/3 sm:w-full mx-auto rounded-lg shadow-lg object-cover" />
+          <!-- Right Image with animation -->
+          <div class="relative w-full max-w-xs md:max-w-sm mx-auto animate-slide-up">
+            <img src="./img/render.png" alt="Karakter 3D" class="w-2/3 sm:w-full mx-auto rounded-lg shadow-lg object-cover" />
+          </div>
+          
         </div>
-        </div></section>
-      </div>
+      </section>
     </main>
+    
+    <style>
+    @keyframes slideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-slide-up {
+      animation: slideUp 0.8s ease-out both;
+    }
+    </style>
+    
     
     <script>
       document.getElementById('menuToggle').addEventListener('click', () => {
