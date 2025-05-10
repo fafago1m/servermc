@@ -78,19 +78,19 @@
     </script>
     
     <main class="px-4">
-      <section class="min-h-screen snap-start flex items-center justify-center text-white">
-        <div class="container mx-auto max-w-7xl flex flex-col-reverse md:flex-row items-center justify-between gap-8 py-8 md:py-20">
-          
-          <!-- Left Content -->
-          <div class="max-w-xl w-full">
-            <div class="inline-flex items-center gap-2 bg-yellow-900/40 text-[#ffb800] text-xs font-semibold rounded px-3 py-1 mb-4 shadow-sm">
+      <section class="h-screen snap-start flex items-center justify-center text-white">
+        <div class="container mx-auto max-w-7xl flex flex-col-reverse md:flex-row items-center justify-between gap-6 py-6 md:py-12 h-full">
+    
+          <!-- Left: Teks -->
+          <div class="flex-1 flex flex-col justify-center">
+            <div class="inline-flex items-center gap-2 bg-yellow-900/40 text-[#ffb800] text-xs font-semibold rounded px-3 py-1 mb-3 shadow-sm">
               <i class="fas fa-info-circle"></i>
               <span>IP : play.fafastore.com</span>
             </div>
-            <h1 class="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-4">
+            <h1 class="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-3">
               Temukan Dunia Tanpa Batas
             </h1>
-            <p class="text-gray-400 text-sm mb-6">
+            <p class="text-gray-400 text-sm mb-5">
               Bergabunglah dengan komunitas global kami, ikuti pertempuran, jadi pemimpin, dan tukar pengalaman dengan pemain lainnya.
             </p>
             <div class="flex flex-wrap items-center gap-4">
@@ -108,9 +108,9 @@
             </div>
           </div>
     
-          <!-- Right Image with animation -->
-          <div class="relative w-full max-w-xs md:max-w-sm mx-auto animate-slide-up">
-            <img src="./img/render.png" alt="Karakter 3D" class="w-2/3 sm:w-full mx-auto rounded-lg shadow-lg object-cover" />
+          <!-- Right: Gambar -->
+          <div class="flex-1 flex justify-center items-center animate-slide-up">
+            <img src="./img/render.png" alt="Karakter 3D" class="w-2/3 sm:w-full max-w-xs rounded-lg shadow-lg object-cover" />
           </div>
           
         </div>
@@ -119,19 +119,14 @@
     
     <style>
     @keyframes slideUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
     .animate-slide-up {
       animation: slideUp 0.8s ease-out both;
     }
     </style>
+    
     
     
     <script>
