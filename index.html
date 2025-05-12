@@ -200,7 +200,13 @@
       
     
     
-    <section class="mt-8 max-w-full overflow-x-auto">
+    <section class="mt-8 max-w-full overflow-x-auto bg-gradient-to-br from-bg-[#2f2f2f] to-gray-800">
+       <!-- Animated background elements -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
+      <div class="absolute top-20 left-10 w-32 h-32 bg-blue-500 rounded-full filter blur-3xl animate-float1"></div>
+      <div class="absolute top-40 right-20 w-40 h-40 bg-purple-500 rounded-full filter blur-3xl animate-float2"></div>
+      <div class="absolute bottom-10 left-1/2 w-48 h-48 bg-cyan-500 rounded-full filter blur-3xl animate-float3"></div>
+    </div>
       <h3 class="text-white font-semibold text-lg mb-4 select-none">Pilih Items Server</h3>
       <nav class="flex gap-2 text-sm font-medium text-gray-300 mb-6 select-none flex-wrap">
         <button class="bg-[#1a1a1a] border border-[#3a3a3a] rounded px-4 py-1.5 text-white cursor-default">Survival</button>
@@ -278,8 +284,15 @@
       <!-- Detail Anggota -->
       <div id="member-detail" class="bg-[#1e1e1e] text-white rounded-2xl p-6 shadow-lg flex gap-6 items-center transition-all duration-300">
         <div class="w-32 h-32">
-          <img id="member-img" src="https://mc-heads.net/body/V3nus_/200" class=" object-cover rounded-xl shadow-md" alt="Avatar" />
+          <img
+            id="member-img"
+            src="https://mc-heads.net/body/V3nus_/200"
+            class="w-full h-full object-contain rounded-xl shadow-md"
+            alt="Avatar"
+          />
         </div>
+        
+        
         
         <div>
           <h3 class="text-xl font-bold flex items-center gap-2">
