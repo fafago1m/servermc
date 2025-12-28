@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Olahan Segara - Citra Rasa Banyuwangi</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
@@ -13,36 +19,25 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#008ECC', 
-                        dark: '#0A1F30',    
-                        light: '#F0F8FF',   
-                        accent: '#FFB700',  
+                        primary: '#0066FF',  
+                        dark: '#0f172a',     
+                        light: '#F8FAFC',    
+                        accent: '#FFB700',   
                     },
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        display: ['Oswald', 'sans-serif'], 
-                        script: ['Caveat', 'cursive'], // Font baru untuk aksen
+                        display: ['Oswald', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'], 
+                        accent: ['Playfair Display', 'serif'], 
+                        script: ['Caveat', 'cursive'],
                     },
                     animation: {
-                        'marquee': 'marquee 25s linear infinite',
                         'float': 'float 6s ease-in-out infinite',
-                        'spin-slow': 'spin 15s linear infinite',
-                        'blob': 'blob 7s infinite',
                     },
                     keyframes: {
-                        marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-100%)' },
-                        },
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)', borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)', borderRadius: '30% 60% 70% 40%/50% 60% 30% 60%' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)', borderRadius: '60% 30% 30% 60%/40% 60% 50% 60%' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)', borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' },
+                            '50%': { transform: 'translateY(-10px)' },
                         }
                     }
                 }
@@ -52,224 +47,307 @@
 
     <style>
         body {
-            background-color: #F0F8FF;
+            background-color: #F8FAFC;
             -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
         }
-        .hide-scroll::-webkit-scrollbar { display: none; }
-        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-        .text-outline { -webkit-text-stroke: 1px rgba(10, 31, 48, 0.1); color: transparent; }
-        .text-outline-dark { -webkit-text-stroke: 2px #0A1F30; color: transparent; }
         
-        .glass { background: rgba(240, 248, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6); }
-        .glass-dark { background: rgba(10, 31, 48, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        /* Navbar Styles */
+        .nav-fixed-scrolled {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+        }
+        .nav-pill-desktop {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Hero Background */
+        .hero-background {
+            /* Pastikan path gambar benar */
+            background-image: url('tesss.png'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .hero-background::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.4) 100%);
+            z-index: 1;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+        .title-sub {
+            display: block;
+            font-size: 1.1em;
+            margin-top: -10px;
+            margin-left: 20px;
+            color: #0066FF;
+            filter: drop-shadow(2px 2px 0px white);
+        }
+
+        /* --- PROFESSIONAL PARALLAX CSS --- */
+        .parallax-wrapper {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .parallax-card {
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .parallax-layer-base {
+            transform: translateZ(0px);
+        }
+        .parallax-layer-mid {
+            transform: translateZ(20px); 
+        }
+        .parallax-layer-top {
+            transform: translateZ(50px); 
+            transition: transform 0.3s ease-out;
+        }
+
+        .card-glare {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1.5rem;
+            background: radial-gradient(
+                circle at var(--glare-x, 50%) var(--glare-y, 50%), 
+                rgba(255, 255, 255, 0.4) 0%, 
+                rgba(255, 255, 255, 0) 60%
+            );
+            opacity: 0;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+            transition: opacity 0.5s ease;
+            z-index: 50;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+.footer-texture {
+    background-color: #020617;
+
+    
+    background-repeat: repeat-x;
+    background-position: top;
+}
+
+
+
+
         
-        /* Background Mesh Gradient Halus */
-        .bg-mesh {
-            background-color: #F0F8FF;
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(200,100%,90%,1) 0, transparent 50%), 
-                radial-gradient(at 100% 100%, hsla(37,100%,90%,1) 0, transparent 50%);
+        /* Custom Input Styles for Contact Form */
+        .input-primary {
+            width: 100%;
+            background-color: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            color: #0f172a;
+            transition: all 0.3s;
+        }
+        .input-primary:focus {
+            outline: none;
+            border-color: #0066FF;
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+        }
+
+        /* Swiper Custom Styles */
+        .swiper-pagination-bullet-active {
+            background-color: #0066FF !important;
+            width: 20px !important;
+            border-radius: 5px !important;
+        }
+        .swiper-slide {
+            height: auto !important; /* Ensures cards have same height if flexed */
+            display: flex;
+            height: 100%;
+        }
+        .swiper-wrapper {
+            align-items: stretch;
         }
     </style>
 </head>
-<body class="text-dark antialiased bg-mesh">
+<body class="text-dark antialiased">
 
-    <nav class="hidden md:flex fixed top-0 w-full z-50 px-8 py-6 justify-between items-center transition-all duration-300" id="desktopNav">
-        <div class="text-2xl font-display font-bold tracking-tighter uppercase">Olahan<span class="text-primary">Segara.</span></div>
-        <div class="glass px-8 py-3 rounded-full flex gap-8 text-sm font-semibold tracking-wide shadow-sm shadow-blue-100">
-            <a href="#" class="hover:text-primary transition">PRODUCTS</a>
-            <a href="#story" class="hover:text-primary transition">STORY</a>
-            <a href="#" class="hover:text-primary transition">RESELLERS</a>
-            <a href="#" class="hover:text-primary transition">CONTACT</a>
+    <nav id="desktopNav" class="hidden md:flex fixed top-0 w-full z-50 px-8 py-6 justify-between items-center transition-all duration-300">
+        <div class="flex items-center gap-2">
+            
+            <div class="text-2xl font-heading font-bold tracking-tighter text-dark">
+                Olahan<span class="text-primary">Segara.</span>
+            </div>
         </div>
-        <div class="flex gap-4">
-            <button class="w-12 h-12 rounded-full border border-dark/10 flex items-center justify-center hover:bg-dark hover:text-white transition">
+        <div class="nav-pill-desktop px-2 py-1.5 rounded-full flex gap-1 items-center">
+            <a href="#" class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-primary hover:bg-blue-50 transition-all duration-300">Beranda</a>
+            <a href="#story" class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-primary hover:bg-blue-50 transition-all duration-300">Cerita Kami</a>
+            <a href="#news" class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-primary hover:bg-blue-50 transition-all duration-300">Produk</a>
+            <a href="#contact" class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-primary hover:bg-blue-50 transition-all duration-300">Hubungi Kami</a>
+        </div>
+        <div class="flex gap-3">
+            <button class="w-10 h-10 rounded-full border border-slate-200 bg-white/50 text-slate-600 flex items-center justify-center hover:bg-primary hover:border-transparent hover:text-white transition duration-300">
                 <i class="fas fa-search"></i>
             </button>
-            <button class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-dark transition shadow-lg shadow-blue-500/30 relative">
-                <i class="fas fa-shopping-bag"></i>
-                <span class="absolute -top-1 -right-1 bg-accent text-dark text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-light">2</span>
-            </button>
+           
         </div>
     </nav>
 
-    <nav class="md:hidden fixed top-0 w-full z-50 px-5 py-4 flex justify-between items-center glass border-b-0 shadow-sm transition-all duration-300" id="mobileNav">
-        <div class="text-xl font-display font-bold tracking-tighter uppercase">Olahan<span class="text-primary">Segara.</span></div>
-        <div class="flex items-center gap-4">
-            <button class="relative text-dark hover:text-primary transition">
-                <i class="fas fa-shopping-bag text-lg"></i>
-                <span class="absolute -top-2 -right-2 bg-accent text-dark text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
-            </button>
-            <button id="menuBtn" class="w-10 h-10 rounded-full bg-white border border-blue-100 flex items-center justify-center text-dark shadow-sm active:scale-95 transition">
-                <i class="fas fa-bars text-lg"></i>
+    <nav id="mobileNav" class="md:hidden fixed top-0 w-full z-50 px-5 py-4 flex justify-between items-center transition-all duration-300 border-b border-transparent">
+        <div class="text-xl font-heading font-bold tracking-tighter text-dark">Olahan<span class="text-primary">Segara.</span></div>
+        <div class="flex items-center gap-3">
+           
+            <button id="menuBtn" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-dark shadow-sm active:scale-95 transition">
+                <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
     <div id="mobileMenu" class="fixed inset-0 z-[60] bg-white translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col">
-        <div class="px-5 py-4 flex justify-between items-center border-b border-gray-100">
-            <div class="text-xl font-display font-bold tracking-tighter uppercase">Menu</div>
-            <button id="closeMenuBtn" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-dark hover:bg-gray-200 transition">
-                <i class="fas fa-times text-lg"></i>
+        <div class="px-5 py-4 flex justify-between items-center border-b border-slate-100">
+            <div class="text-xl font-heading font-bold tracking-tighter uppercase text-primary">Menu</div>
+            <button id="closeMenuBtn" class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-dark hover:bg-slate-200 transition">
+                <i class="fas fa-times"></i>
             </button>
         </div>
         <div class="flex-1 flex flex-col p-6 gap-6 overflow-y-auto">
-            <a href="#" class="mobile-link text-3xl font-display font-bold text-dark hover:text-primary transition flex justify-between items-center group">
+            <a href="#" class="mobile-link text-3xl font-heading font-bold text-dark hover:text-primary transition flex justify-between items-center group">
                 Beranda <i class="fas fa-arrow-right text-lg opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all text-primary"></i>
             </a>
-            <a href="#story" class="mobile-link text-3xl font-display font-bold text-dark hover:text-primary transition flex justify-between items-center group">
+            <a href="#story" class="mobile-link text-3xl font-heading font-bold text-dark hover:text-primary transition flex justify-between items-center group">
                 Cerita Kami <i class="fas fa-arrow-right text-lg opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all text-primary"></i>
             </a>
-            <a href="#" class="mobile-link text-3xl font-display font-bold text-dark hover:text-primary transition flex justify-between items-center group">
-                Katalog <i class="fas fa-arrow-right text-lg opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all text-primary"></i>
+            <a href="#" class="mobile-link text-3xl font-heading font-bold text-dark hover:text-primary transition flex justify-between items-center group">
+                Produk <i class="fas fa-arrow-right text-lg opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all text-primary"></i>
             </a>
-            <a href="#" class="mobile-link text-3xl font-display font-bold text-dark hover:text-primary transition flex justify-between items-center group">
-                Reseller <i class="fas fa-arrow-right text-lg opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all text-primary"></i>
+            
+            <a href="#contact" class="mobile-link text-3xl font-heading font-bold text-dark hover:text-primary transition flex justify-between items-center group">
+                Hubungi Kami <i class="fas fa-arrow-right text-lg opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all text-primary"></i>
             </a>
-            <div class="h-px bg-gray-100 my-2"></div>
-            <div class="flex flex-col gap-4">
-                <a href="#" class="flex items-center gap-3 text-slate-500 font-medium">
-                    <div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-primary"><i class="fas fa-user text-xs"></i></div>
-                    Masuk Akun
-                </a>
-                <a href="#" class="flex items-center gap-3 text-slate-500 font-medium">
-                    <div class="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center text-green-600"><i class="fab fa-whatsapp text-xs"></i></div>
-                    Hubungi CS
-                </a>
-            </div>
         </div>
         <div class="p-6 bg-slate-50">
             <p class="text-xs text-slate-400 text-center uppercase tracking-widest">© 2024 Olahan Segara</p>
         </div>
     </div>
 
-<section class="relative w-full overflow-hidden bg-[#f8fafc] text-slate-900 pt-24 pb-0 md:pt-32 md:pb-0">
-    
-    <div class="absolute inset-0 opacity-[0.5] pointer-events-none z-[1] mix-blend-multiply" 
-         style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');">
-    </div>
+    <section class="relative w-full min-h-screen lg:h-screen flex items-center overflow-hidden pt-32 pb-12 lg:pt-16 lg:pb-0 hero-background">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left order-2 lg:order-1 reveal-on-scroll">
+                    <div class="inline-flex items-center gap-2 glass-card px-4 py-1.5 rounded-full shadow-sm mb-1">
+                        <span class="flex h-2 w-2 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                        </span>
+                        <span class="text-[10px] lg:text-xs font-bold text-slate-700 uppercase tracking-[0.2em]">Authentic Seafood</span>
+                    </div>
 
-   <div class="absolute bottom-0 left-0 w-full z-0 pointer-events-none leading-none overflow-hidden">
-    <img 
-        src="bgg.png" 
-        alt="Background Wave" 
-        class="block 
-               h-[200px] md:h-[400px] object-fill
-               w-[160%] md:w-full 
-               relative left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0"
-    >
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-dark leading-[1.1] mb-3 tracking-tight">
+                        Gurihnya laut dalam 
+                        <span class="font-accent italic title-sub">Setiap gigitan</span>
+                    </h1>
+
+                    <p class="text-slate-600 text-sm lg:text-base leading-relaxed max-w-md mx-auto lg:mx-0 mb-8 font-medium">
+                        Menyajikan keajaiban rasa dari selat Bali langsung ke meja Anda. Diproses segar setiap hari dengan standar kualitas tertinggi.
+                    </p>
+
+                   <div class="flex flex-row flex-wrap gap-3 justify-center lg:justify-start mb-2">
+    <button class="bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-sm hover:bg-blue-700 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 shadow-lg shadow-blue-200">
+        Lihat Menu Hari Ini
+    </button>
+    <button onclick="window.location.href='#contact'" class="glass-card text-slate-800 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-sm hover:bg-white transition-all duration-300">
+        Hubungi Kami
+    </button>
 </div>
 
-    <svg class="absolute top-1/4 right-0 w-full h-full pointer-events-none z-0 opacity-40 md:opacity-60 overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <path d="M0 50 Q 25 30 50 50 T 100 50" fill="none" stroke="#93c5fd" stroke-width="0.5" stroke-dasharray="2 2" />
-        <path d="M0 60 Q 25 40 50 60 T 100 60" fill="none" stroke="#bfdbfe" stroke-width="0.3" />
-    </svg>
 
+                    <div class="flex items-center justify-center lg:justify-start gap-8 border-t border-slate-300/30 pt-8">
+                        <div class="text-center lg:text-left">
+                            <p class="font-heading text-2xl font-bold text-dark">50+</p>
+                            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Pilihan</p>
+                        </div>
+                        <div class="w-px h-8 bg-slate-300/50"></div>
+                        <div class="text-center lg:text-left">
+                            <p class="font-heading text-2xl font-bold text-dark">100%</p>
+                            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Higienis</p>
+                        </div>
+                        <div class="w-px h-8 bg-slate-300/50"></div>
+                       <div class="text-center lg:text-left">
+    <p class="font-heading text-2xl font-bold text-accent">5.0 / 5</p>
+    <p class="text-[10px] text-accent uppercase font-bold tracking-widest">
+        Rating
+    </p>
+</div>
 
-    <div class="container mx-auto px-4 relative z-10 pb-12"> <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-6 md:gap-4">
-            
-            <div class="w-full md:w-[48%] text-center md:text-left">
-                
-                <div class="inline-flex items-center gap-3 bg-white/80 backdrop-blur border border-blue-200 text-blue-800 px-4 py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4 shadow-sm">
-                    <span class="flex h-2 w-2 relative">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
-                    </span>
-                    Authentic Local Taste
+                    </div>
                 </div>
 
-                <h1 class="text-4xl sm:text-5xl md:text-7xl font-serif font-black mb-2 text-slate-900 tracking-tight leading-[1]">
-                    Rasa Asli <br>
-                    <span class="relative inline-block">
-                        <span class="absolute inset-x-0 bottom-2 h-3 bg-blue-200/80 -z-10 -rotate-1 skew-x-12"></span> <span class="text-blue-900">Nusantara.</span>
-                    </span>
-                </h1>
-                
-                <p class="text-2xl md:text-4xl font-script text-blue-500 mb-4 -rotate-1 origin-left">
-                    Bikin lidah bergoyang!
-                </p>
-
-                <p class="text-slate-600 font-sans text-sm md:text-base max-w-lg mx-auto md:mx-0 mb-6 leading-relaxed">
-                    Sensasi rasa laut Banyuwangi yang otentik. Resep warisan yang diolah modern tanpa menghilangkan ciri khas rasa tradisionalnya.
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start items-center">
-                    <button class="w-full sm:w-auto bg-blue-900 text-white px-6 py-3 rounded-full font-bold uppercase tracking-wider text-sm hover:bg-blue-800 transition-all duration-300 shadow-xl shadow-blue-900/10 hover:-translate-y-1">
-                        Pesan Sekarang
-                    </button>
-                    <button class="group w-full sm:w-auto bg-white/50 border border-slate-300 text-slate-600 px-6 py-3 rounded-full font-bold uppercase tracking-wider text-sm hover:border-blue-900 hover:text-blue-900 transition-all duration-300 flex items-center gap-2 backdrop-blur-sm">
-                        <span>Lihat Menu</span>
-                        <i class="fas fa-arrow-right opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="w-full md:w-[45%] flex justify-center items-center relative mt-4 md:mt-0">
-                <div class="relative w-[280px] md:w-[500px] aspect-square flex items-center justify-center">
-                    
-                    <div class="absolute w-[80%] h-[80%] bg-white rounded-full border border-blue-100 shadow-xl shadow-blue-100/50"></div>
-                    
-                    <div class="absolute w-[95%] h-[95%] animate-spin-slow pointer-events-none z-10 opacity-20">
-                         <svg viewBox="0 0 200 200" width="100%" height="100%">
-                            <path id="curve-blue" fill="transparent" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" />
-                            <text width="500">
-                                <textPath xlink:href="#curve-blue" class="font-bold uppercase tracking-[0.22em] text-[10px] fill-blue-900">
-                                    • Premium Quality Product • Fresh From Banyuwangi • 
-                                </textPath>
-                            </text>
-                        </svg>
-                    </div>
-
-                    <div class="relative w-[90%] h-[90%] transition-transform duration-500 hover:scale-105 hover:rotate-2">
-                         <img src="/foto.png" 
-                              onerror="this.src='https://images.unsplash.com/photo-1599488615731-7e512819a636?auto=format&fit=crop&w=600&q=80'" 
-                              alt="Produk Olahan Segara" 
-                              class="w-full h-full object-contain drop-shadow-2xl relative z-20">
-                    </div>
-
-                    <div class="absolute bottom-10 right-4 md:bottom-16 md:right-4 bg-white border border-slate-100 p-3 shadow-[0_10px_30px_rgba(30,58,138,0.15)] z-30 flex items-center gap-3 rotate-3 hover:rotate-0 transition-transform duration-300 rounded-lg">
-                        <div class="text-right">
-                            <p class="text-[9px] text-blue-500 font-bold uppercase tracking-wider mb-0.5">Special Price</p>
-                            <p class="text-2xl font-serif font-bold text-blue-900">15<span class="text-xs align-top">k</span></p>
+                <div class="relative flex justify-center items-center order-1 lg:order-2 reveal-on-scroll">
+                    <div class="absolute w-[300px] lg:w-[450px] aspect-square bg-blue-100/40 rounded-full blur-3xl -z-10"></div>
+                    <div class="relative z-10 animate-float px-6">
+                        <img src="/foto1.png" 
+                             onerror="this.src='https://png.pngtree.com/png-vector/20240201/ourmid/pngtree-top-view-of-fried-fish-seafood-dish-transparent-background-png-image_11586522.png'"
+                             alt="Seafood" 
+                             class="w-full max-w-[280px] sm:max-w-[350px] lg:max-w-[480px] drop-shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
+                        <div class="absolute -top-4 -right-2 glass-card p-3 rounded-2xl shadow-xl flex items-center gap-3 animate-float-fast">
+                            <div class="bg-primary text-white p-2 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-500 font-bold uppercase">Kualitas</p>
+                                <p class="text-xs font-bold text-slate-800 tracking-tight">Terjamin Segar</p>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
-<style>
-    .font-script { font-family: 'Great Vibes', cursive; }
-    
-    @keyframes spin-slow {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-    .animate-spin-slow { animation: spin-slow 25s linear infinite; }
-</style>
-
-     <section id="story" class="py-20 bg-white relative overflow-hidden">
+    <section id="story" class="py-20 bg-white relative overflow-hidden">
         <div class="absolute left-0 top-20 w-32 h-32 bg-blue-50 rounded-full blur-3xl opacity-60"></div>
         <div class="absolute right-0 bottom-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl opacity-60"></div>
         <div class="px-6 md:px-20 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                <div class="relative mb-10 md:mb-0">
+                <div class="relative mb-10 md:mb-0 reveal-on-scroll">
                     <div class="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl shadow-blue-900/20 transform rotate-2 hover:rotate-0 transition duration-700">
-                        <img src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?q=80&w=1000&auto=format&fit=crop" alt="Proses Masak" class="w-full h-[500px] object-cover hover:scale-105 transition duration-700">
+                        <img src="/about.png" alt="Proses Masak" class="w-full h-[500px] object-cover hover:scale-105 transition duration-700">
                         <div class="absolute bottom-0 left-0 bg-dark text-white p-6 rounded-tr-[2rem]">
                             <p class="font-display font-bold text-3xl text-accent">2024</p>
                             <p class="text-xs tracking-widest uppercase text-slate-400">Established</p>
                         </div>
                     </div>
                     <div class="absolute -bottom-10 -right-4 md:-right-10 z-20 w-48 md:w-64 aspect-[4/5] rounded-[2rem] overflow-hidden shadow-xl border-4 border-white transform -rotate-3 hover:rotate-0 transition duration-500 block">
-                        <img src="https://images.unsplash.com/photo-1559742811-822873691df8?q=80&w=500&auto=format&fit=crop" alt="Bahan Segar" class="w-full h-full object-cover">
+                        <img src="/fotoproduk.png" alt="Bahan Segar" class="w-full h-full object-cover">
                     </div>
-                    <div class="absolute -top-6 -left-6 z-0 text-[10rem] text-blue-50 leading-none font-display font-bold select-none opacity-50">"</div>
                 </div>
-                <div class="pl-0 lg:pl-10 mt-6 md:mt-0">
+                <div class="pl-0 lg:pl-10 mt-6 md:mt-0 reveal-on-scroll" style="transition-delay: 200ms;">
                     <span class="text-primary font-bold tracking-[0.2em] text-sm uppercase mb-2 block">Dibalik Layar</span>
                     <h2 class="text-5xl md:text-6xl font-display font-bold text-dark mb-6 leading-none">
                         Dari Pesisir <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Ke Meja Makan.</span>
@@ -279,25 +357,25 @@
                     </p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
                         <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-primary text-xl shadow-sm flex-shrink-0"><i class="fas fa-fish"></i></div>
+                            <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-primary text-xl shadow-sm flex-shrink-0">
+                                <i class="fas fa-fish"></i>
+                            </div>
                             <div>
                                 <h4 class="font-display font-bold text-lg text-dark">Bahan Segar</h4>
                                 <p class="text-sm text-slate-500">Langsung dari nelayan lokal Banyuwangi setiap pagi.</p>
                             </div>
                         </div>
+
                         <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-accent text-xl shadow-sm flex-shrink-0"><i class="fas fa-check-circle"></i></div>
-                            <div>
-                                <h4 class="font-display font-bold text-lg text-dark">Tanpa Pengawet</h4>
-                                <p class="text-sm text-slate-500">Proses alami menjamin kualitas dan keamanan produk.</p>
+                            <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center text-green-600 shadow-sm flex-shrink-0 p-2.5">
+                                <img src="logo-halal.png" 
+                                     alt="Halal Logo" 
+                                     class="w-full h-full object-contain">
                             </div>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 items-center">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Founder" class="w-14 h-14 rounded-full border-2 border-white shadow-lg object-cover">
-                        <div>
-                            <p class="font-display font-bold text-dark text-lg">Kang Asep</p>
-                            <p class="text-xs text-primary font-bold uppercase tracking-wider">Founder Olahan Segara</p>
+                            <div>
+                                <h4 class="font-display font-bold text-lg text-dark">100% Halal</h4>
+                                <p class="text-sm text-slate-500">Tersertifikasi halal, menjamin kebersihan dan keamanan produk.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -305,87 +383,116 @@
         </div>
     </section>
 
-    <section class="py-10 px-4 md:px-20">
-    <h2 class="text-3xl md:text-4xl font-display font-bold uppercase mb-8 text-dark px-2">Paling Laris</h2>
-    
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+    <section class="py-10 px-4 md:px-20 relative z-20">
+         <span class="text-primary font-bold tracking-[0.2em] text-sm uppercase flex items-center justify-center gap-2">
+                    <span class="w-8 h-[2px] bg-primary"></span> LIST PRODUK <span class="w-8 h-[2px] bg-primary"></span>
+                </span>
+        <h2 class="text-3xl md:text-4xl font-display font-bold uppercase mb-8 text-dark px-2 text-center reveal-on-scroll">Produk Kami</h2>
         
-        <div class="bg-white rounded-[1.5rem] p-3 md:p-4 pb-4 md:pb-6 shadow-sm hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 group border border-blue-50">
-            <div class="relative bg-blue-50 rounded-[1rem] h-40 md:h-64 mb-3 overflow-hidden flex items-center justify-center">
-                <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=500&q=80" class="w-28 md:w-40 group-hover:scale-110 transition duration-500 drop-shadow-md rounded-lg" alt="Snack">
-                <div class="absolute top-2 right-2 bg-white text-primary px-2 py-1 rounded-full text-[10px] md:text-xs font-bold shadow-sm">Ready</div>
-            </div>
-            <div class="px-1">
-                <div class="flex flex-col md:flex-row justify-between items-start mb-1 md:mb-2">
-                    <h3 class="font-display font-bold text-base md:text-xl uppercase leading-tight text-dark line-clamp-1">Keripik Ori</h3>
-                    <span class="font-bold text-primary text-sm md:text-base">Rp 15k</span>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+            
+            <div class="parallax-wrapper reveal-on-scroll">
+                <div class="parallax-card bg-white rounded-[1.5rem] p-3 md:p-4 pb-4 md:pb-6 shadow-sm hover:shadow-2xl hover:shadow-blue-200/50 group border border-blue-50 h-full flex flex-col">
+                    <div class="card-glare"></div> <div class="relative bg-blue-50 rounded-[1rem] h-40 md:h-64 mb-3 overflow-hidden flex items-center justify-center parallax-layer-base">
+                        <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=500&q=80" 
+                             class="w-28 md:w-40 drop-shadow-[0_10px_20px_rgba(0,0,0,0.15)] rounded-lg parallax-layer-top" 
+                             alt="Snack">
+                        <div class="absolute top-2 right-2 bg-white text-primary px-2 py-1 rounded-full text-[10px] md:text-xs font-bold shadow-sm z-10 parallax-layer-mid">Ready</div>
+                    </div>
+                    
+                    <div class="px-1 parallax-layer-mid flex-1 flex flex-col">
+                        <div class="flex flex-col md:flex-row justify-between items-start mb-1 md:mb-2">
+                            <h3 class="font-display font-bold text-base md:text-xl uppercase leading-tight text-dark line-clamp-1">Keripik Ori</h3>
+                            <span class="font-bold text-primary text-sm md:text-base">Rp 15k</span>
+                        </div>
+                        <p class="text-[10px] md:text-xs text-slate-500 mb-3 line-clamp-2 block flex-1">Rasa original yang gurih dan renyah. Cocok untuk cemilan keluarga.</p>
+                        <button class="w-full bg-dark text-white py-2 md:py-3 rounded-xl font-bold text-xs md:text-sm hover:bg-primary transition-colors flex items-center justify-center gap-2 transform active:scale-95">
+                            <span class="inline">Tambah</span> <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
                 </div>
-                <p class="text-[10px] md:text-xs text-slate-500 mb-3 line-clamp-2 hidden md:block">Rasa original yang gurih dan renyah.</p>
-                <button class="w-full bg-dark text-white py-2 md:py-3 rounded-xl font-bold text-xs md:text-sm hover:bg-primary transition-colors flex items-center justify-center gap-2">
-                    <span class="hidden md:inline">Tambah</span> <i class="fas fa-plus"></i>
-                </button>
             </div>
-        </div>
 
-        <div class="bg-white rounded-[1.5rem] p-3 md:p-4 pb-4 md:pb-6 shadow-sm hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 group border border-blue-50">
-            <div class="relative bg-blue-50 rounded-[1rem] h-40 md:h-64 mb-3 overflow-hidden flex items-center justify-center">
-                <img src="https://images.unsplash.com/photo-1599488615731-7e512819a636?auto=format&fit=crop&w=500&q=80" class="w-28 md:w-40 group-hover:scale-110 transition duration-500 drop-shadow-md rounded-lg" alt="Snack">
-                <div class="absolute top-2 right-2 bg-white text-red-500 px-2 py-1 rounded-full text-[10px] md:text-xs font-bold shadow-sm">Pedas</div>
-            </div>
-            <div class="px-1">
-                <div class="flex flex-col md:flex-row justify-between items-start mb-1 md:mb-2">
-                    <h3 class="font-display font-bold text-base md:text-xl uppercase leading-tight text-dark line-clamp-1">Varian Pedas</h3>
-                    <span class="font-bold text-primary text-sm md:text-base">Rp 17k</span>
+            <div class="parallax-wrapper reveal-on-scroll" style="transition-delay: 100ms;">
+                <div class="parallax-card bg-white rounded-[1.5rem] p-3 md:p-4 pb-4 md:pb-6 shadow-sm hover:shadow-2xl hover:shadow-blue-200/50 group border border-blue-50 h-full flex flex-col">
+                    <div class="card-glare"></div>
+                    
+                    <div class="relative bg-blue-50 rounded-[1rem] h-40 md:h-64 mb-3 overflow-hidden flex items-center justify-center parallax-layer-base">
+                        <img src="https://images.unsplash.com/photo-1599488615731-7e512819a636?auto=format&fit=crop&w=500&q=80" 
+                             class="w-28 md:w-40 drop-shadow-[0_10px_20px_rgba(0,0,0,0.15)] rounded-lg parallax-layer-top" 
+                             alt="Snack">
+                        <div class="absolute top-2 right-2 bg-white text-red-500 px-2 py-1 rounded-full text-[10px] md:text-xs font-bold shadow-sm z-10 parallax-layer-mid">Pedas</div>
+                    </div>
+                    
+                    <div class="px-1 parallax-layer-mid flex-1 flex flex-col">
+                        <div class="flex flex-col md:flex-row justify-between items-start mb-1 md:mb-2">
+                            <h3 class="font-display font-bold text-base md:text-xl uppercase leading-tight text-dark line-clamp-1">Varian Pedas</h3>
+                            <span class="font-bold text-primary text-sm md:text-base">Rp 17k</span>
+                        </div>
+                        <p class="text-[10px] md:text-xs text-slate-500 mb-3 line-clamp-2 block flex-1">Sensasi pedas nendang di lidah dengan bumbu rahasia.</p>
+                        <button class="w-full bg-white border border-dark/10 text-dark py-2 md:py-3 rounded-xl font-bold text-xs md:text-sm hover:bg-dark hover:text-white transition-colors flex items-center justify-center gap-2 transform active:scale-95">
+                            <span class="inline">Tambah</span> <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
                 </div>
-                <p class="text-[10px] md:text-xs text-slate-500 mb-3 line-clamp-2 hidden md:block">Sensasi pedas nendang di lidah.</p>
-                <button class="w-full bg-white border border-dark/10 text-dark py-2 md:py-3 rounded-xl font-bold text-xs md:text-sm hover:bg-dark hover:text-white transition-colors flex items-center justify-center gap-2">
-                    <span class="hidden md:inline">Tambah</span> <i class="fas fa-plus"></i>
-                </button>
             </div>
-        </div>
 
-        <div class="bg-primary text-white rounded-[1.5rem] p-3 md:p-4 pb-4 md:pb-6 shadow-xl shadow-blue-500/30 hover:shadow-2xl transition-all duration-300 group relative overflow-hidden">
-            <div class="absolute -right-10 -top-10 w-32 h-32 bg-accent rounded-full blur-[50px] opacity-40"></div>
-            <div class="relative bg-white/10 rounded-[1rem] h-40 md:h-64 mb-3 overflow-hidden flex items-center justify-center border border-white/20">
-                <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=500&q=80" class="w-28 md:w-40 group-hover:scale-110 transition duration-500 drop-shadow-lg rounded-lg" alt="Bundle">
-                <div class="absolute top-2 left-2 bg-accent text-dark px-2 py-1 rounded-full text-[10px] md:text-xs font-bold">Hemat</div>
-            </div>
-            <div class="px-1">
-                <div class="flex flex-col md:flex-row justify-between items-start mb-1 md:mb-2">
-                    <h3 class="font-display font-bold text-base md:text-xl uppercase leading-tight line-clamp-1">Paket Seru</h3>
-                    <span class="font-bold text-accent text-sm md:text-base">Rp 50k</span>
+            <div class="parallax-wrapper reveal-on-scroll" style="transition-delay: 200ms;">
+                <div class="parallax-card bg-primary text-white rounded-[1.5rem] p-3 md:p-4 pb-4 md:pb-6 shadow-xl shadow-blue-500/30 hover:shadow-2xl transition-all duration-300 group relative overflow-hidden h-full flex flex-col">
+                    <div class="card-glare"></div>
+                    
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-accent rounded-full blur-[50px] opacity-40 parallax-layer-base"></div>
+                    <div class="relative bg-white/10 rounded-[1rem] h-40 md:h-64 mb-3 overflow-hidden flex items-center justify-center border border-white/20 parallax-layer-base">
+                        <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=500&q=80" 
+                             class="w-28 md:w-40 drop-shadow-lg rounded-lg parallax-layer-top" 
+                             alt="Bundle">
+                        <div class="absolute top-2 left-2 bg-accent text-dark px-2 py-1 rounded-full text-[10px] md:text-xs font-bold z-10 parallax-layer-mid">Hemat</div>
+                    </div>
+                    
+                    <div class="px-1 parallax-layer-mid flex-1 flex flex-col relative z-10">
+                        <div class="flex flex-col md:flex-row justify-between items-start mb-1 md:mb-2">
+                            <h3 class="font-display font-bold text-base md:text-xl uppercase leading-tight line-clamp-1">Paket Seru</h3>
+                            <span class="font-bold text-accent text-sm md:text-base">Rp 50k</span>
+                        </div>
+                        <p class="text-[10px] md:text-xs text-blue-100 mb-3 line-clamp-2 block flex-1">Isi 4 bungkus varian bebas pilih sesuka hati.</p>
+                        <button class="w-full bg-accent text-dark py-2 md:py-3 rounded-xl font-bold text-xs md:text-sm hover:bg-white transition-colors flex items-center justify-center gap-2 transform active:scale-95">
+                            Beli <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
                 </div>
-                <p class="text-[10px] md:text-xs text-blue-100 mb-3 hidden md:block">Isi 4 bungkus varian bebas.</p>
-                <button class="w-full bg-accent text-dark py-2 md:py-3 rounded-xl font-bold text-xs md:text-sm hover:bg-white transition-colors flex items-center justify-center gap-2">
-                    Beli <i class="fas fa-plus"></i>
-                </button>
             </div>
-        </div>
-        
-        <div class="bg-white rounded-[1.5rem] p-3 md:p-4 pb-4 md:pb-6 shadow-sm hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 group border border-blue-50">
-            <div class="relative bg-blue-50 rounded-[1rem] h-40 md:h-64 mb-3 overflow-hidden flex items-center justify-center">
-                <img src="https://images.unsplash.com/photo-1599488615731-7e512819a636?auto=format&fit=crop&w=500&q=80" class="w-28 md:w-40 group-hover:scale-110 transition duration-500 drop-shadow-md rounded-lg" alt="Snack">
-            </div>
-            <div class="px-1">
-                <div class="flex flex-col md:flex-row justify-between items-start mb-1 md:mb-2">
-                    <h3 class="font-display font-bold text-base md:text-xl uppercase leading-tight text-dark line-clamp-1">Rumput Laut</h3>
-                    <span class="font-bold text-primary text-sm md:text-base">Rp 16k</span>
+            
+            <div class="parallax-wrapper reveal-on-scroll" style="transition-delay: 300ms;">
+                <div class="parallax-card bg-white rounded-[1.5rem] p-3 md:p-4 pb-4 md:pb-6 shadow-sm hover:shadow-2xl hover:shadow-blue-200/50 group border border-blue-50 h-full flex flex-col">
+                    <div class="card-glare"></div>
+                    
+                    <div class="relative bg-blue-50 rounded-[1rem] h-40 md:h-64 mb-3 overflow-hidden flex items-center justify-center parallax-layer-base">
+                        <img src="https://images.unsplash.com/photo-1599488615731-7e512819a636?auto=format&fit=crop&w=500&q=80" 
+                             class="w-28 md:w-40 drop-shadow-[0_10px_20px_rgba(0,0,0,0.15)] rounded-lg parallax-layer-top" 
+                             alt="Snack">
+                    </div>
+                    
+                    <div class="px-1 parallax-layer-mid flex-1 flex flex-col">
+                        <div class="flex flex-col md:flex-row justify-between items-start mb-1 md:mb-2">
+                            <h3 class="font-display font-bold text-base md:text-xl uppercase leading-tight text-dark line-clamp-1">Rumput Laut</h3>
+                            <span class="font-bold text-primary text-sm md:text-base">Rp 16k</span>
+                        </div>
+                        <p class="text-[10px] md:text-xs text-slate-500 mb-3 line-clamp-2 block flex-1">Aroma laut yang kuat dengan tekstur crispy.</p>
+                        <button class="w-full bg-white border border-dark/10 text-dark py-2 md:py-3 rounded-xl font-bold text-xs md:text-sm hover:bg-dark hover:text-white transition-colors flex items-center justify-center gap-2 transform active:scale-95">
+                            <span class="inline">Tambah</span> <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
                 </div>
-                <p class="text-[10px] md:text-xs text-slate-500 mb-3 line-clamp-2 hidden md:block">Aroma laut yang kuat.</p>
-                <button class="w-full bg-white border border-dark/10 text-dark py-2 md:py-3 rounded-xl font-bold text-xs md:text-sm hover:bg-dark hover:text-white transition-colors flex items-center justify-center gap-2">
-                    <span class="hidden md:inline">Tambah</span> <i class="fas fa-plus"></i>
-                </button>
             </div>
+
         </div>
+    </section>
 
-    </div>
-</section>
-
-   <section class="py-16 px-6 md:px-20 bg-white relative overflow-hidden">
+    <section class="py-16 px-6 md:px-20 bg-white relative overflow-hidden">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-full bg-blue-50/50 blur-3xl rounded-full pointer-events-none"></div>
 
         <div class="container mx-auto relative z-10">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 reveal-on-scroll">
                 <span class="text-primary font-bold tracking-[0.2em] text-sm uppercase flex items-center justify-center gap-2">
                     <span class="w-8 h-[2px] bg-primary"></span> Online Store <span class="w-8 h-[2px] bg-primary"></span>
                 </span>
@@ -395,7 +502,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto mb-16">
                 
-                <a href="#" class="group relative overflow-hidden rounded-2xl bg-[#EE4D2D] p-6 text-white shadow-lg shadow-orange-500/20 transition-all duration-300 hover:shadow-orange-500/40 hover:-translate-y-2">
+                <a href="#" class="reveal-on-scroll group relative overflow-hidden rounded-2xl bg-[#EE4D2D] p-6 text-white shadow-lg shadow-orange-500/20 transition-all duration-300 hover:shadow-orange-500/40 hover:-translate-y-2">
                     <div class="absolute right-0 top-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
                     <div class="flex items-center justify-between relative z-10">
                         <div>
@@ -409,7 +516,7 @@
                     </div>
                 </a>
 
-                <a href="#" class="group relative overflow-hidden rounded-2xl bg-[#42B549] p-6 text-white shadow-lg shadow-green-500/20 transition-all duration-300 hover:shadow-green-500/40 hover:-translate-y-2">
+                <a href="#" class="reveal-on-scroll group relative overflow-hidden rounded-2xl bg-[#42B549] p-6 text-white shadow-lg shadow-green-500/20 transition-all duration-300 hover:shadow-green-500/40 hover:-translate-y-2" style="transition-delay: 100ms;">
                     <div class="absolute right-0 top-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
                     <div class="flex items-center justify-between relative z-10">
                         <div>
@@ -423,7 +530,7 @@
                     </div>
                 </a>
 
-                <a href="#" class="group relative overflow-hidden rounded-2xl bg-black p-6 text-white shadow-lg shadow-gray-500/20 transition-all duration-300 hover:shadow-gray-500/40 hover:-translate-y-2">
+                <a href="#" class="reveal-on-scroll group relative overflow-hidden rounded-2xl bg-black p-6 text-white shadow-lg shadow-gray-500/20 transition-all duration-300 hover:shadow-gray-500/40 hover:-translate-y-2" style="transition-delay: 200ms;">
                     <div class="absolute right-0 top-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
                     <div class="flex items-center justify-between relative z-10">
                         <div>
@@ -439,7 +546,7 @@
 
             </div>
 
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 border-t border-slate-100 pt-10">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 border-t border-slate-100 pt-10 reveal-on-scroll">
                 <span class="font-display font-bold text-lg text-dark">Ikuti Update Terbaru:</span>
                 <div class="flex gap-4">
                     <a href="#" class="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-red-500 hover:to-purple-500 hover:text-white hover:border-transparent transition duration-300 shadow-sm">
@@ -459,9 +566,137 @@
         </div>
     </section>
 
-    <section class="px-6 md:px-20 py-10">
-        <div class="bg-dark rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden flex flex-col md:flex-row items-center justify-between shadow-2xl shadow-blue-900/40">
-            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#008ECC 1px, transparent 1px); background-size: 20px 20px;"></div>
+    <section class="py-24 bg-slate-50 relative overflow-hidden">
+    <div class="absolute right-0 top-0 w-1/3 h-full bg-blue-50/50 skew-x-12 translate-x-32 pointer-events-none"></div>
+    <div class="absolute left-0 bottom-0 w-64 h-64 bg-yellow-50/50 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+    
+    <div class="container mx-auto px-6 md:px-12 relative z-10">
+        <div class="text-center mb-16 reveal-on-scroll">
+             <span class="text-primary font-bold tracking-[0.2em] text-sm uppercase flex items-center justify-center gap-2">
+                    <span class="w-8 h-[2px] bg-primary"></span> Testimoni <span class="w-8 h-[2px] bg-primary"></span>
+                </span>
+
+            <h2 class="text-4xl md:text-5xl font-display font-bold text-slate-800">Apa Kata Mereka</h2>
+            <p class="text-slate-500 mt-4 max-w-xl mx-auto">Apa kata pelanggan setia tentang cita rasa otentik dari Olahan Segara.</p>
+        </div>
+
+        <div class="swiper myTestimonialSwiper px-4 pb-16 reveal-on-scroll">
+            <div class="swiper-wrapper">
+                
+                <div class="swiper-slide h-auto">
+                    <div class="bg-white p-8 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] border border-slate-100 hover:border-blue-300 hover:shadow-[0_20px_40px_-10px_rgba(59,130,246,0.1)] transition-all duration-300 h-full flex flex-col group relative overflow-hidden">
+                        <div class="absolute -top-4 -right-4 text-[10rem] text-slate-50 font-serif leading-none select-none -z-10 group-hover:text-blue-50/80 transition-colors duration-500">"</div>
+                        
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center text-primary font-bold text-xl shadow-inner shrink-0">
+                                S
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-slate-800 text-lg">Sari Wulandari</h4>
+                                <p class="text-xs text-slate-500 font-medium uppercase tracking-wide">Ibu Rumah Tangga</p>
+                            </div>
+                        </div>
+
+                        <div class="flex text-yellow-400 mb-4 text-sm gap-1">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+
+                        <div class="relative z-10">
+                            <p class="text-slate-600 leading-relaxed italic">
+                                "Keripik ikannya beneran crispy banget, gak amis sama sekali. Anak-anak di rumah pada suka, apalagi varian originalnya. Bakal repeat order sih ini!"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide h-auto">
+                    <div class="bg-white p-8 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] border border-slate-100 hover:border-blue-300 hover:shadow-[0_20px_40px_-10px_rgba(59,130,246,0.1)] transition-all duration-300 h-full flex flex-col group relative overflow-hidden">
+                        <div class="absolute -top-4 -right-4 text-[10rem] text-slate-50 font-serif leading-none select-none -z-10 group-hover:text-blue-50/80 transition-colors duration-500">"</div>
+                        
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center text-orange-600 font-bold text-xl shadow-inner shrink-0">
+                                B
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-slate-800 text-lg">Budi Santoso</h4>
+                                <p class="text-xs text-slate-500 font-medium uppercase tracking-wide">Mahasiswa</p>
+                            </div>
+                        </div>
+
+                        <div class="flex text-yellow-400 mb-4 text-sm gap-1">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+
+                        <div class="relative z-10">
+                            <p class="text-slate-600 leading-relaxed italic">
+                                "Pengiriman cepet banget, packaging aman pake bubble wrap tebel. Rasanya pedesnya pas, nendang tapi masih bisa dinikmati. Sukses terus Olahan Segara!"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide h-auto">
+                    <div class="bg-white p-8 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] border border-slate-100 hover:border-blue-300 hover:shadow-[0_20px_40px_-10px_rgba(59,130,246,0.1)] transition-all duration-300 h-full flex flex-col group relative overflow-hidden">
+                        <div class="absolute -top-4 -right-4 text-[10rem] text-slate-50 font-serif leading-none select-none -z-10 group-hover:text-blue-50/80 transition-colors duration-500">"</div>
+                        
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center text-green-600 font-bold text-xl shadow-inner shrink-0">
+                                D
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-slate-800 text-lg">Diana Puspita</h4>
+                                <p class="text-xs text-slate-500 font-medium uppercase tracking-wide">Food Blogger</p>
+                            </div>
+                        </div>
+
+                        <div class="flex text-yellow-400 mb-4 text-sm gap-1">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+
+                        <div class="relative z-10">
+                            <p class="text-slate-600 leading-relaxed italic">
+                                "Sebagai pecinta seafood, olahan ini autentik banget. Rumput lautnya kerasa fresh. Cocok buat oleh-oleh khas Banyuwangi."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide h-auto">
+                    <div class="bg-white p-8 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] border border-slate-100 hover:border-blue-300 hover:shadow-[0_20px_40px_-10px_rgba(59,130,246,0.1)] transition-all duration-300 h-full flex flex-col group relative overflow-hidden">
+                        <div class="absolute -top-4 -right-4 text-[10rem] text-slate-50 font-serif leading-none select-none -z-10 group-hover:text-blue-50/80 transition-colors duration-500">"</div>
+                        
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center text-purple-600 font-bold text-xl shadow-inner shrink-0">
+                                R
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-slate-800 text-lg">Rini Astuti</h4>
+                                <p class="text-xs text-slate-500 font-medium uppercase tracking-wide">Wiraswasta</p>
+                            </div>
+                        </div>
+
+                        <div class="flex text-yellow-400 mb-4 text-sm gap-1">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+
+                        <div class="relative z-10">
+                            <p class="text-slate-600 leading-relaxed italic">
+                                "Sangat merekomendasikan untuk oleh-oleh. Rasanya konsisten dan enak. Pelayanan ramah banget."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-pagination !bottom-0"></div>
+        </div>
+    </div>
+</section>
+   
+
+    <section class="px-6 md:px-20 py-10 relative z-20">
+        <div class="bg-dark rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden flex flex-col md:flex-row items-center justify-between shadow-2xl shadow-blue-900/40 reveal-on-scroll">
+            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#0066FF 1px, transparent 1px); background-size: 20px 20px;"></div>
             <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-primary rounded-full blur-[80px] opacity-40"></div>
             <div class="relative z-10 text-center md:text-left mb-8 md:mb-0">
                 <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">Promo Spesial</span>
@@ -476,110 +711,319 @@
         </div>
     </section>
 
-    <footer class="bg-dark text-white pt-20 pb-10 rounded-t-[3rem] mt-0 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E');"></div>
-        
-        <div class="container mx-auto px-6 md:px-12 relative z-10">
-            <div class="grid md:grid-cols-12 gap-10 mb-16">
+    <section id="contact" class="py-20 px-6 md:px-20 bg-blue-50 relative z-20">
+        <div class="container mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
                 
-                <div class="md:col-span-5">
-                    <h2 class="text-4xl font-display font-bold uppercase mb-6">Olahan<span class="text-primary">Segara.</span></h2>
-                    <p class="text-slate-400 leading-relaxed mb-6 pr-4">
-                        Menghadirkan cita rasa otentik pesisir Banyuwangi ke meja makan Anda. Kami berkomitmen menyajikan produk olahan laut yang higienis, halal, dan tanpa pengawet berbahaya.
+                <div class="reveal-on-scroll">
+                    <span class="text-primary font-bold tracking-[0.2em] text-sm uppercase mb-2 block">Ada Pertanyaan?</span>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-dark mb-6">Hubungi Kami</h2>
+                    <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                        Kami siap membantu Anda. Jangan ragu untuk menghubungi kami untuk pemesanan dalam jumlah besar, kerjasama reseller, atau sekadar menyapa.
                     </p>
-                    <div class="flex items-center gap-3 text-slate-300">
-                        <i class="fas fa-clock text-accent"></i>
-                        <span class="text-sm">Senin - Sabtu: 08.00 - 17.00 WIB</span>
-                    </div>
-                </div>
 
-                <div class="md:col-span-3">
-                    <h4 class="font-bold uppercase mb-6 text-slate-500 text-sm tracking-widest">Jelajahi</h4>
-                    <ul class="space-y-4 text-slate-300">
-                        <li><a href="#" class="hover:text-primary hover:translate-x-2 transition-all inline-block">Katalog Produk</a></li>
-                        <li><a href="#story" class="hover:text-primary hover:translate-x-2 transition-all inline-block">Cerita Kami</a></li>
-                        <li><a href="#" class="hover:text-primary hover:translate-x-2 transition-all inline-block">Program Reseller</a></li>
-                        <li><a href="#" class="hover:text-primary hover:translate-x-2 transition-all inline-block">Info Pengiriman</a></li>
-                    </ul>
-                </div>
-
-                <div class="md:col-span-4">
-                    <h4 class="font-bold uppercase mb-6 text-slate-500 text-sm tracking-widest">Hubungi Kami</h4>
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 text-primary">
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-5">
+                            <div class="w-12 h-12 rounded-xl bg-white text-primary shadow-sm flex items-center justify-center text-xl flex-shrink-0">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div>
-                                <h5 class="font-bold text-white mb-1">Rumah Produksi</h5>
-                                <p class="text-slate-400 text-sm leading-relaxed">Jl. Ikan Paus No. 45, Muncar,<br>Banyuwangi, Jawa Timur 68472</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 text-primary">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-                            <div>
-                                <h5 class="font-bold text-white mb-1">WhatsApp Admin</h5>
-                                <p class="text-slate-400 text-sm">+62 812-3456-7890</p>
+                                <h4 class="font-heading font-bold text-dark text-lg">Alamat Produksi</h4>
+                                <p class="text-slate-500 text-sm mt-1">Jl. Ikan Muncar No. 88, Tembokrejo,<br>Banyuwangi, Jawa Timur 68472</p>
                             </div>
                         </div>
 
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 text-primary">
+                        <div class="flex items-start gap-5">
+                            <div class="w-12 h-12 rounded-xl bg-white text-primary shadow-sm flex items-center justify-center text-xl flex-shrink-0">
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <div>
-                                <h5 class="font-bold text-white mb-1">Email</h5>
-                                <p class="text-slate-400 text-sm">halo@olahansegara.id</p>
+                                <h4 class="font-heading font-bold text-dark text-lg">Email</h4>
+                                <p class="text-slate-500 text-sm mt-1">halo@olahansegara.id<br>support@olahansegara.id</p>
                             </div>
                         </div>
+
+                        <div class="flex items-start gap-5">
+                            <div class="w-12 h-12 rounded-xl bg-white text-primary shadow-sm flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-dark text-lg">WhatsApp</h4>
+                                <p class="text-slate-500 text-sm mt-1">+62 812 3456 7890 (Admin 1)<br>Senin - Sabtu, 08.00 - 17.00 WIB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 md:p-10 rounded-[2rem] shadow-xl shadow-blue-500/10 reveal-on-scroll" style="transition-delay: 100ms;">
+                    <form action="#" method="POST">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label for="name" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Nama Lengkap</label>
+                                <input type="text" id="name" class="input-primary" placeholder="Nama Anda">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">No. WhatsApp</label>
+                                <input type="tel" id="phone" class="input-primary" placeholder="0812...">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="email" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Alamat Email</label>
+                            <input type="email" id="email" class="input-primary" placeholder="nama@email.com">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="message" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Pesan Anda</label>
+                            <textarea id="message" rows="4" class="input-primary resize-none" placeholder="Tulis pesan atau pertanyaan Anda di sini..."></textarea>
+                        </div>
+
+                        <button type="button" class="w-full bg-primary text-white py-4 rounded-xl font-bold text-sm hover:bg-blue-700 shadow-lg shadow-blue-500/20 hover:-translate-y-1 transition-all duration-300">
+                            Kirim Pesan <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <footer class="relative mt-0 footer-texture text-slate-300">
+        <div class="absolute -top-1 left-0 w-full overflow-hidden leading-[0]">
+            <svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1200 120"
+     preserveAspectRatio="none"
+     class="relative block w-full h-[60px] md:h-[100px]">
+
+  <path
+    d="
+      M0 60
+      C200 30 400 30 600 60
+      C800 90 1000 90 1200 60
+      L1200 0
+      L0 0
+      Z"
+    fill="#eff6ff"/>
+</svg>
+
+        </div>
+
+        <div class="container mx-auto px-6 md:px-12 pt-24 pb-12 relative z-10">
+            <div class="grid md:grid-cols-4 gap-12 mb-16 border-b border-white/10 pb-12">
+                
+                <div class="md:col-span-2 pr-0 md:pr-12">
+                    <div class="mb-6">
+                        <h2 class="text-3xl font-heading font-bold uppercase text-white tracking-tight inline-block">
+                            Olahan<span class="text-primary">Segara.</span>
+                        </h2>
+                        <div class="mt-2 text-sm font-script text-accent text-xl transform -rotate-2 origin-left">Citra Rasa Banyuwangi</div>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed mb-8 max-w-md">
+                        Misi kami sederhana: Menghadirkan kekayaan laut Nusantara ke meja makan keluarga dengan cara yang jujur, bersih, dan berkelanjutan.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary hover:scale-110 transition duration-300 border border-white/10">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#1877F2] hover:scale-110 transition duration-300 border border-white/10">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#25D366] hover:scale-110 transition duration-300 border border-white/10">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-display font-bold text-white uppercase tracking-widest text-sm mb-6">Jelajahi</h4>
+                    <ul class="space-y-4 text-sm font-medium">
+                        <li><a href="#" class="hover:text-primary transition-colors block py-1">Tentang Kami</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors block py-1">Katalog Produk</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors block py-1">Program Reseller</a></li>
+                        <li><a href="#news" class="hover:text-primary transition-colors block py-1">Berita & Artikel</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition-colors block py-1">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display font-bold text-white uppercase tracking-widest text-sm mb-6">Buletin</h4>
+                    <p class="text-xs text-slate-500 mb-4">Dapatkan info promo eksklusif dan resep terbaru langsung ke email Anda.</p>
+                    <div class="relative">
+                        <input type="email" placeholder="Email Anda" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-primary transition">
+                        <button class="absolute right-2 top-1.5 bottom-1.5 bg-primary text-white px-3 rounded-md text-xs font-bold hover:bg-blue-600 transition">Join</button>
                     </div>
                 </div>
             </div>
 
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 uppercase tracking-wider">
-                <p>&copy; 2024 Olahan Segara Banyuwangi. All Rights Reserved.</p>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 font-medium">
+                <p>&copy; 2024 CV Olahan Segara Banyuwangi.</p>
                 <div class="flex gap-6">
-                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white transition">Syarat & Ketentuan</a>
+                    <a href="#" class="hover:text-white transition">Peta Situs</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const nav = document.getElementById('desktopNav');
-            const mobileNav = document.getElementById('mobileNav');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    nav.classList.add('py-4');
-                    nav.classList.remove('py-6');
-                    mobileNav.classList.add('shadow-md');
-                } else {
-                    nav.classList.add('py-6');
-                    nav.classList.remove('py-4');
-                    mobileNav.classList.remove('shadow-md');
-                }
+            
+            // --- Initialize Swiper for Testimonials ---
+            var swiper = new Swiper(".myTestimonialSwiper", {
+                slidesPerView: 1, // Mobile: 1 Slide
+                spaceBetween: 30,
+                loop: true, // Infinite Loop
+                autoplay: {
+                    delay: 3000, // Otomatis geser setiap 3 detik
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 2, // Tablet: 2 Slide
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 3, // Desktop: 3 Slide (Sama seperti tampilan grid sebelumnya)
+                        spaceBetween: 30,
+                    },
+                },
             });
 
+            // --- Logic Scroll Navbar & Mobile Menu ---
+            const nav = document.getElementById('desktopNav');
+            const mobileNav = document.getElementById('mobileNav');
             const menuBtn = document.getElementById('menuBtn');
             const closeMenuBtn = document.getElementById('closeMenuBtn');
             const mobileMenu = document.getElementById('mobileMenu');
             const mobileLinks = document.querySelectorAll('.mobile-link');
 
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 30) {
+                    nav.classList.add('py-4', 'nav-fixed-scrolled');
+                    nav.classList.remove('py-6');
+                    mobileNav.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+                } else {
+                    nav.classList.remove('py-4', 'nav-fixed-scrolled');
+                    nav.classList.add('py-6');
+                    mobileNav.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+                }
+            });
+
             function toggleMenu() {
                 mobileMenu.classList.toggle('translate-x-full');
                 document.body.classList.toggle('overflow-hidden');
             }
-
             menuBtn.addEventListener('click', toggleMenu);
             closeMenuBtn.addEventListener('click', toggleMenu);
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', toggleMenu);
-            });
+            mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+            // --- Logic Scroll Reveal ---
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                revealElements.forEach((reveal) => {
+                    if (reveal.getBoundingClientRect().top < windowHeight - 50) {
+                        reveal.classList.add('reveal-visible');
+                    }
+                });
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+
+            // --------------------------------------------------------------------------
+            // PROFESSIONAL PARALLAX ENGINE (LERP + GLARE)
+            // --------------------------------------------------------------------------
+            
+            if (window.innerWidth > 1024) { // Hanya aktif di Desktop
+                const wrappers = document.querySelectorAll('.parallax-wrapper');
+                
+                // Helper: Linear Interpolation (Membuat gerakan halus)
+                const lerp = (start, end, factor) => start + (end - start) * factor;
+
+                wrappers.forEach(wrapper => {
+                    const card = wrapper.querySelector('.parallax-card');
+                    const glare = wrapper.querySelector('.card-glare');
+                    
+                    // State untuk posisi saat ini (current) dan target
+                    let state = {
+                        mouseX: 0, mouseY: 0, // Posisi mouse relatif center kartu
+                        rx: 0, ry: 0,         // Rotasi saat ini
+                        targetRx: 0, targetRy: 0, // Rotasi tujuan
+                        gx: 50, gy: 50,       // Posisi glare saat ini
+                        targetGx: 50, targetGy: 50, // Posisi glare tujuan
+                        opacity: 0, targetOpacity: 0 // Opacity glare
+                    };
+
+                    let isHovering = false;
+                    const width = wrapper.offsetWidth;
+                    const height = wrapper.offsetHeight;
+
+                    // Event Listeners
+                    wrapper.addEventListener('mousemove', (e) => {
+                        const rect = wrapper.getBoundingClientRect();
+                        state.mouseX = e.clientX - rect.left;
+                        state.mouseY = e.clientY - rect.top;
+
+                        // Kalkulasi Rotasi Target (Max 12 derajat)
+                        const xPct = (state.mouseX / width) - 0.5;
+                        const yPct = (state.mouseY / height) - 0.5;
+                        
+                        state.targetRy = xPct * 24; // Rotasi Y
+                        state.targetRx = yPct * -24; // Rotasi X (Inverted)
+
+                        // Kalkulasi Glare Target
+                        state.targetGx = (state.mouseX / width) * 100;
+                        state.targetGy = (state.mouseY / height) * 100;
+                    });
+
+                    wrapper.addEventListener('mouseenter', () => {
+                        isHovering = true;
+                        state.targetOpacity = 1;
+                    });
+
+                    wrapper.addEventListener('mouseleave', () => {
+                        isHovering = false;
+                        state.targetOpacity = 0;
+                        state.targetRx = 0;
+                        state.targetRy = 0;
+                        state.targetGx = 50;
+                        state.targetGy = 50;
+                    });
+
+                    // Animation Loop (60FPS)
+                    const animate = () => {
+                        // Interpolasi gerakan (Smooth Factor: 0.1)
+                        state.rx = lerp(state.rx, state.targetRx, 0.1);
+                        state.ry = lerp(state.ry, state.targetRy, 0.1);
+                        state.gx = lerp(state.gx, state.targetGx, 0.1);
+                        state.gy = lerp(state.gy, state.targetGy, 0.1);
+                        state.opacity = lerp(state.opacity, state.targetOpacity, 0.1);
+
+                        // Apply Styles
+                        card.style.transform = `rotateX(${state.rx}deg) rotateY(${state.ry}deg)`;
+                        
+                        if (glare) {
+                            glare.style.setProperty('--glare-x', `${state.gx}%`);
+                            glare.style.setProperty('--glare-y', `${state.gy}%`);
+                            glare.style.opacity = state.opacity;
+                        }
+
+                        requestAnimationFrame(animate);
+                    };
+
+                    animate(); // Start Loop
+                });
+            }
         });
     </script>
 </body>
